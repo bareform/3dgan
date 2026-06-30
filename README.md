@@ -40,6 +40,16 @@ After training for 100 epochs, you can find results similiar to gif at `./assets
 
 <img src="assets/shapenet/vase/vase.gif" width="300" alt="vase">
 
+To train a `bowl` 3D-GAN:
+
+```
+python3 -m utils.trainer --config="./configs/shapenet_bowl.toml"
+```
+
+After training for 100 epochs, you can find results similiar to gif at `./assets/shapenet/bowl/bowl.gif`.
+
+<img src="assets/shapenet/bowl/bowl.gif" width="300" alt="bowl">
+
 You can download the pre-trained models [here](https://huggingface.co/luethan2025/3dgan) and use the provided Jupyter Notebook `inference.ipynb` to generate some videos.
 
 ## Method
