@@ -1,0 +1,37 @@
+[dataset]
+dataset = "shapenet"
+category = "bottle"
+root = "3dgan_data/3DShapeNets/volumetric_data/"
+
+[model]
+generator_in_channels = [512, 256, 128, 64, 1]
+discriminator_in_channels = [1, 64, 128, 256, 512, 1]
+
+batch_size = 32
+num_workers = 4
+pin_memory = true
+num_epochs = 100
+
+voxel_resolution = 64
+
+generator_lr = 0.00025
+generator_adam_beta1 = 0.0
+generator_adam_beta2 = 0.9
+
+discriminator_lr = 0.00001
+discriminator_adam_beta1 = 0.0
+discriminator_adam_beta2 = 0.9
+
+latent_dim = 200
+
+use_spectral_norm = true
+use_hinge_loss = true
+use_instance_noise = true
+
+random_seed = 0
+
+[evaluation]
+checkpoint_dir = "./checkpoints"
+save_checkpoint_interval = 100
+
+save_output_interval = 10
