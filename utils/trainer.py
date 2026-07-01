@@ -168,6 +168,13 @@ def get_argparser():
         help="Number of epochs between saving intermediate output (default: 5).",
     )
     parser.add_argument(
+        "--mixed_precision",
+        type=str,
+        choices=["no", "fp16", "bf16"],
+        default="no",
+        help="Whether to use mixed precision. Choose between fp16 and bf16 (bfloat16).",
+    )
+    parser.add_argument(
         "--random_seed",
         type=int,
         default=0,
@@ -234,8 +241,10 @@ def main():
     G.train()
     D.train()
 
-    use_amp = device.type == "cuda"
-    scaler = GradScaler(use_amp)
+    dtype = torchutils.get_torch_dtype(args.mixed_precision)
+    use_amp = (device.type == "cuda") and (dtype != torch.float32)
+    use_scaler = (device.type == "cuda") and (dtype == torch.float16)
+    scaler = GradScaler(enabled=use_scaler)
 
     test_noise = torch.randn(1, args.latent_dim, device=device)
     for epoch in range(args.num_epochs):
@@ -262,7 +271,7 @@ def main():
                 # === Train Discriminator ===
                 noise = torch.randn(batch_size, args.latent_dim, device=device)
 
-                with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=use_amp):
+                with torch.autocast(device_type=device.type, dtype=dtype, enabled=use_amp):
                     fake_images = G(noise)
                     if args.use_hinge_loss:
                         fake_images = torch.tanh(fake_images)
@@ -316,7 +325,7 @@ def main():
 
                 noise = torch.randn(batch_size, args.latent_dim, device=device)
 
-                with torch.autocast(device_type=device.type, dtype=torch.float16, enabled=use_amp):
+                with torch.autocast(device_type=device.type, dtype=dtype, enabled=use_amp):
                     fake_images = G(noise)
                     if args.use_hinge_loss:
                         fake_images = torch.tanh(fake_images)
