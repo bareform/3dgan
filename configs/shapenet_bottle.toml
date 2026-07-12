@@ -28,6 +28,8 @@ use_spectral_norm = true
 use_hinge_loss = true
 use_instance_noise = true
 
+instance_noise_decay = 100
+
 mixed_precision = "fp16"
 
 random_seed = 0

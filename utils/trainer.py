@@ -102,6 +102,12 @@ def get_argparser():
         help="Whether to use instance noise (default: False).",
     )
     parser.add_argument(
+        "--instance_noise_decay",
+        type=int,
+        default=100,
+        help="Number of epochs over which to decay instance noise (default: 100).",
+    )
+    parser.add_argument(
         "--latent_dim",
         type=int,
         default=200,
@@ -266,7 +272,7 @@ def main():
                 images = images * 2.0 - 1.0
                 batch_size = images.size(0)
 
-                noise_std = max(0.0, 0.05 * (1.0 - epoch / 100)) if args.use_instance_noise else 0.0
+                noise_std = max(0.0, 0.05 * (1.0 - epoch / args.instance_noise_decay)) if args.use_instance_noise else 0.0
 
                 # === Train Discriminator ===
                 noise = torch.randn(batch_size, args.latent_dim, device=device)
