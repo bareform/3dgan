@@ -310,7 +310,7 @@ def main():
                     fake_pred = fake_logits < 0
                     D_accuracy = torch.cat([real_pred, fake_pred]).float().mean()
 
-                D_optimizer.zero_grad(set_to_none=True)
+                D_optimizer.zero_grad()
                 scaler.scale(D_loss).backward()
                 scaler.step(D_optimizer)
 
@@ -327,7 +327,7 @@ def main():
                 running_D_acc += D_accuracy.item()
 
                 # === Train Generator ===
-                G_optimizer.zero_grad(set_to_none=True)
+                G_optimizer.zero_grad()
 
                 noise = torch.randn(batch_size, args.latent_dim, device=device)
 
