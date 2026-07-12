@@ -87,6 +87,48 @@ def get_argparser():
         help="Input channels for the discriminator.",
     )
     parser.add_argument(
+        "--generator_lr",
+        type=float,
+        default=0.0025,
+        help="Learning rate for the generator (default: 0.0025).",
+    )
+    parser.add_argument(
+        "--generator_adam_beta1",
+        type=float,
+        default=0.5,
+        help="Adam beta1 (default: 0.5).",
+    )
+    parser.add_argument(
+        "--generator_adam_beta2",
+        type=float,
+        default=0.999,
+        help="Adam beta2 (default: 0.999).",
+    )
+    parser.add_argument(
+        "--discriminator_lr",
+        type=float,
+        default=0.00001,
+        help="Learning rate for the discriminator (default: 0.00001).",
+    )
+    parser.add_argument(
+        "--discriminator_adam_beta1",
+        type=float,
+        default=0.5,
+        help="Adam beta1 (default: 0.5).",
+    )
+    parser.add_argument(
+        "--discriminator_adam_beta2",
+        type=float,
+        default=0.999,
+        help="Adam beta2 (default: 0.999).",
+    )
+    parser.add_argument(
+        "--latent_dim",
+        type=int,
+        default=200,
+        help="Latent space dimensionality (default: 200).",
+    )
+    parser.add_argument(
         "--use_spectral_norm",
         action="store_true",
         help="Whether to use spectral normalization (default: False).",
@@ -106,48 +148,6 @@ def get_argparser():
         type=int,
         default=100,
         help="Number of epochs over which to decay instance noise (default: 100).",
-    )
-    parser.add_argument(
-        "--latent_dim",
-        type=int,
-        default=200,
-        help="Latent space dimensionality (default: 200).",
-    )
-    parser.add_argument(
-        "--generator_lr",
-        type=float,
-        default=0.0025,
-        help="Learning rate for the generator (default: 0.0025).",
-    )
-    parser.add_argument(
-        "--discriminator_lr",
-        type=float,
-        default=0.00001,
-        help="Learning rate for the discriminator (default: 0.00001).",
-    )
-    parser.add_argument(
-        "--generator_adam_beta1",
-        type=float,
-        default=0.5,
-        help="Adam beta1 (default: 0.5).",
-    )
-    parser.add_argument(
-        "--generator_adam_beta2",
-        type=float,
-        default=0.999,
-        help="Adam beta2 (default: 0.999).",
-    )
-    parser.add_argument(
-        "--discriminator_adam_beta1",
-        type=float,
-        default=0.5,
-        help="Adam beta1 (default: 0.5).",
-    )
-    parser.add_argument(
-        "--discriminator_adam_beta2",
-        type=float,
-        default=0.999,
-        help="Adam beta2 (default: 0.999).",
     )
     parser.add_argument(
         "--checkpoint_dir",
