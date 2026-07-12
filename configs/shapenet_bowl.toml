@@ -38,4 +38,5 @@ random_seed = 0
 checkpoint_dir = "./checkpoints"
 save_checkpoint_interval = 100
 
+output_dir = "./output"
 save_output_interval = 10
