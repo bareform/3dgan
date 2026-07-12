@@ -5,7 +5,7 @@ from torch.nn.utils import spectral_norm
 class Discriminator(nn.Module):
     def __init__(self, in_channels: list[int], use_spectral_norm: bool=False) -> None:
         super().__init__()
-        self.in_channels = in_channels
+        self.in_channels = in_channels + [1]
         layers = []
         for idx, (in_ch, out_ch) in enumerate(zip(self.in_channels, self.in_channels[1:])):
             layers.append(

@@ -5,7 +5,7 @@ root = "3dgan_data/3DShapeNets/volumetric_data/"
 
 [model]
 generator_in_channels = [512, 256, 128, 64, 1]
-discriminator_in_channels = [1, 64, 128, 256, 512, 1]
+discriminator_in_channels = [1, 64, 128, 256, 512]
 
 batch_size = 32
 num_workers = 4
