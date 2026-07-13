@@ -350,6 +350,7 @@ def main():
         
                 scaler.scale(G_loss).backward()
                 scaler.step(G_optimizer)
+
                 scaler.update()
 
                 running_G_loss += G_loss.item()
