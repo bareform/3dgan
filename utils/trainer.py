@@ -275,6 +275,8 @@ def main():
                 noise_std = max(0.0, 0.05 * (1.0 - epoch / args.instance_noise_decay)) if args.use_instance_noise else 0.0
 
                 # === Train Discriminator ===
+                D_optimizer.zero_grad()
+
                 noise = torch.randn(batch_size, args.latent_dim, device=device)
 
                 with torch.autocast(device_type=device.type, dtype=dtype, enabled=use_amp):
@@ -310,7 +312,6 @@ def main():
                     fake_pred = fake_logits < 0
                     D_accuracy = torch.cat([real_pred, fake_pred]).float().mean()
 
-                D_optimizer.zero_grad()
                 scaler.scale(D_loss).backward()
                 scaler.step(D_optimizer)
 
