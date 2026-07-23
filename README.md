@@ -33,7 +33,7 @@ cd 3dgan
 To train a `vase` 3D-GAN:
 
 ```
-python3 -m utils.trainer --config="./configs/shapenet_vase.toml"
+python3 -m utils.trainer --config="./configs/shapenet-vase.toml"
 ```
 
 After training for 100 epochs, you can find results similiar to gif at `./assets/shapenet/vase/vase.gif`.
@@ -43,7 +43,7 @@ After training for 100 epochs, you can find results similiar to gif at `./assets
 To train a `bowl` 3D-GAN:
 
 ```
-python3 -m utils.trainer --config="./configs/shapenet_bowl.toml"
+python3 -m utils.trainer --config="./configs/shapenet-bowl.toml"
 ```
 
 After training for 100 epochs, you can find results similiar to gif at `./assets/shapenet/bowl/bowl.gif`.
@@ -53,7 +53,7 @@ After training for 100 epochs, you can find results similiar to gif at `./assets
 To train a `bottle` 3D-GAN:
 
 ```
-python3 -m utils.trainer --config="./configs/shapenet_bottle.toml"
+python3 -m utils.trainer --config="./configs/shapenet-bottle.toml"
 ```
 
 After training for 100 epochs, you can find results similiar to gif at `./assets/shapenet/bottle/bottle.gif`.
