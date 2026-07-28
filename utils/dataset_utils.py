@@ -8,12 +8,12 @@ import torch.utils.data as data
 
 class ShapeNet(data.Dataset):
     def __init__(
-            self,
-            root: str,
-            category: str,
-            voxel_resolution: int=64,
-            image_set: str="train",
-        ) -> None:
+        self,
+        root: str,
+        category: str,
+        voxel_resolution: int=64,
+        image_set: str="train",
+    ) -> None:
         super().__init__()
         self.root = root
         self.image_set = image_set
